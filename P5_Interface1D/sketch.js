@@ -33,11 +33,11 @@ function setup() {
 
   display = new Display(displaySize, pixelSize);        //Initializing the display
 
-  playerOne = new Player(color(255,0,0), parseInt(random(0,displaySize)), displaySize);   // Initializing players
-  playerTwo = new Player(color(0,0,255), parseInt(random(0,displaySize)), displaySize);
+  playerOne = new Player(color('	#14d0f0'), parseInt(random(0,displaySize)), displaySize, 'rectangle');   // Initializing players
+  playerTwo = new Player(color('	#ff83c3'), parseInt(random(0,displaySize)), displaySize, 'rectangle');
 
   for (let i = 0; i < 5; i++) {
-    target = new Player(color(255, 255, 0), parseInt(random(0, displaySize)), displaySize); // Initializing target using the Player class
+    target = new Player(color('	#ffe552'), parseInt(random(0, displaySize)), displaySize, 'circle'); // Initializing target using the Player class
     targets.push(target); // Add each target to the array
   }
 
@@ -52,7 +52,7 @@ function setup() {
 function draw() {
 
   // start with a blank screen
-  background('#ADD8E6');    
+  background('#B0EFEF');    
 
   // Position the 1D strip in the middle of the screen
   push();
@@ -64,6 +64,15 @@ function draw() {
 
   // After we've updated our states, we show the current one 
   display.show();  // Draw the 1D strip on top
+
+  // Update the display buffer for each player
+  playerOne.updateDisplay(display);
+  playerTwo.updateDisplay(display);
+
+  // Update the display buffer for each target
+  for (let target of targets) {
+    target.updateDisplay(display);
+  }
 
   pop();
 

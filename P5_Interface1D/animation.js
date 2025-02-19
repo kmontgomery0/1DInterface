@@ -25,7 +25,7 @@ class Animation {
             
             // populate array with empty/black pixels
             for (let j = 0; j < this.pixels; j++) {
-                this.animation[i][j] = color(0, 0, 0);
+                this.animation[i][j] = color('#ffffff');
             }
         
         // Then populate array with animation
@@ -34,10 +34,10 @@ class Animation {
         let center = parseInt(this.pixels/2);
         
         // Animate to the right
-        this.animation[i][k+center] = color(255, 255, 0);
+        this.animation[i][k+center] = color('	#ffe552');
 
         // Animate to the left
-        this.animation[i][center-k] = color(255, 255, 0);
+        this.animation[i][center-k] = color('	#ffe552');
         
         // Increment animation pixel
         k = k+1;

@@ -5,14 +5,13 @@
 
 class Player {
   
-    constructor(_color, _position, _displaySize) {
+    constructor(_color, _position, _displaySize, _shape = 'rectangle') {
         this.playerColor = _color;
         this.position = _position;
         this.score = 0;
         this.displaySize = _displaySize;
+        this.shape = _shape;
     }
-
-
 
     // Move player based on keyboard input
     move(_direction) {
@@ -28,4 +27,9 @@ class Player {
         } 
          
     } 
+
+    // Update the display buffer based on the shape parameter
+    updateDisplay(display) {
+        display.setPixel(this.position, this.playerColor, this.shape);
+    }
   }
