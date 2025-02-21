@@ -7,8 +7,8 @@
 */ /////////////////////////////////////
 
 
-let displaySize = 47;   // how many pixels are visible in the game; not dynamic
-let pixelSize = 30;     // how big each 'pixel' looks on screen
+let displaySize = 30;   // how many pixels are visible in the game
+let pixelSize = 20;     // how big each 'pixel' looks on screen
 
 let playerOne;    // Adding 2 players to the game
 let playerTwo;
@@ -22,24 +22,18 @@ let collisionAnimation;   // Where we store and manage the collision animation
 
 let score;        // Where we keep track of score and winner
 
-let targets = []; // Array to store multiple targets
 
 
 function setup() {
 
-  createCanvas(windowWidth, windowHeight);  // Make canvas cover the entire browser window
-
-  // createCanvas((displaySize*pixelSize), pixelSize);     // dynamically sets canvas size
+  createCanvas((displaySize*pixelSize), pixelSize);     // dynamically sets canvas size
 
   display = new Display(displaySize, pixelSize);        //Initializing the display
 
-  playerOne = new Player(color('	#14d0f0'), parseInt(random(0,displaySize)), displaySize, 'rectangle');   // Initializing players
-  playerTwo = new Player(color('	#ff83c3'), parseInt(random(0,displaySize)), displaySize, 'rectangle');
+  playerOne = new Player(color(255,0,0), parseInt(random(0,displaySize)), displaySize);   // Initializing players
+  playerTwo = new Player(color(0,0,255), parseInt(random(0,displaySize)), displaySize);
 
-  for (let i = 0; i < 5; i++) {
-    target = new Player(color('	#ffe552'), parseInt(random(0, displaySize)), displaySize, 'circle'); // Initializing target using the Player class
-    targets.push(target); // Add each target to the array
-  }
+  target = new Player(color(255,255,0), parseInt(random(0,displaySize)), displaySize);    // Initializing target using the Player class 
 
   collisionAnimation = new Animation();     // Initializing animation
 
@@ -52,30 +46,13 @@ function setup() {
 function draw() {
 
   // start with a blank screen
-  background('#B0EFEF');    
-
-  // Position the 1D strip in the middle of the screen
-  push();
-
-  translate((windowWidth - displaySize * pixelSize) / 2, windowHeight / 2 - pixelSize / 2); 
+  background(0, 0, 0);    
 
   // Runs state machine at determined framerate
   controller.update();
 
   // After we've updated our states, we show the current one 
-  display.show();  // Draw the 1D strip on top
+  display.show();
 
-  // Update the display buffer for each player
-  playerOne.updateDisplay(display);
-  playerTwo.updateDisplay(display);
-
-  // Update the display buffer for each target
-  for (let target of targets) {
-    target.updateDisplay(display);
-  }
-
-  pop();
 
 }
-
-

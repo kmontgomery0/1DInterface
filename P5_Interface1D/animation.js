@@ -1,12 +1,10 @@
-
-
 class Animation {
 
 
     constructor() {
  
         this.numberOfFrames = 30;    // how many frames the animation has 
-        this.pixels = 70;            // how wide the animation is
+        this.pixels = 30;            // how wide the animation is
         
         // Multidimensional arrays in javascript are a bit silly
         // I recommend you watch this to understand what is happening next: https://www.youtube.com/watch?v=OTNpiLUSiB4
@@ -25,7 +23,7 @@ class Animation {
             
             // populate array with empty/black pixels
             for (let j = 0; j < this.pixels; j++) {
-                this.animation[i][j] = color('#ffffff');
+                this.animation[i][j] = color(0, 0, 0);
             }
         
         // Then populate array with animation
@@ -34,10 +32,10 @@ class Animation {
         let center = parseInt(this.pixels/2);
         
         // Animate to the right
-        this.animation[i][k+center] = color('	#ffe552');
+        this.animation[i][k+center] = color(255, 255, 0);
 
         // Animate to the left
-        this.animation[i][center-k] = color('	#ffe552');
+        this.animation[i][center-k] = color(255, 255, 0);
         
         // Increment animation pixel
         k = k+1;

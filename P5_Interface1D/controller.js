@@ -29,29 +29,21 @@ class Controller {
                 display.setPixel(playerTwo.position, playerTwo.playerColor);
                 
 
-                // now add all targets
-                for (let target of targets) {
-                    display.setPixel(target.position, target.playerColor);
-                }
+                // now add the target
+                display.setPixel(target.position, target.playerColor);
 
                 
-                // check if playerOne has caught any target
-                for (let target of targets) {
-                    if (playerOne.position == target.position) {
-                        playerOne.score++;              // increment score
-                        this.gameState = "COLLISION";   // go to COLLISION state
-                        break;
-                    }
+                // check if player has caught target
+                if (playerOne.position == target.position)  {
+                    playerOne.score++;              // increment score
+                    this.gameState = "COLLISION";   // go to COLLISION state
                 }
-
-                // check if playerTwo has caught any target
-                for (let target of targets) {
-                    if (playerTwo.position == target.position) {
-                        playerTwo.score++;              // increment their score
-                        this.gameState = "COLLISION";   // go to COLLISION state
-                        break;
-                    }
-                }                
+                
+                // check if other player has caught target        
+                if (playerTwo.position == target.position)  {
+                    playerTwo.score++;              // increment their score
+                    this.gameState = "COLLISION";   // go to COLLISION state
+                }
 
                 break;
 
@@ -85,10 +77,7 @@ class Controller {
 
                     // We haven't hit the max score yet, keep playing    
                     } else {
-                        // Move all targets to new random positions
-                        for (let target of targets) {
-                            target.position = parseInt(random(0, displaySize));
-                        }
+                        target.position = parseInt(random(0,displaySize));  // move the target to a new random position
                         this.gameState = "PLAY";    // back to play state
                     }
                 } 
@@ -103,10 +92,7 @@ class Controller {
                 playerTwo.score = 0;
 
                 // put the target somewhere else, so we don't restart the game with player and target in the same place
-                // target.position = parseInt(random(1,displaySize));
-                for (let target of targets) {
-                    target.position = parseInt(random(0, displaySize));
-                }
+                target.position = parseInt(random(1,displaySize));
 
                 //light up w/ winner color by populating all pixels in buffer with their color
                 display.setAllPixels(score.winner);                    
